@@ -144,10 +144,15 @@ def test(dataloader, model, loss_fn):
     correct /= size
     print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
 
-epochs = 5
-for t in range(epochs):
-    print(f"Epoch {t+1}\n-------------------------------")
-    train(train_dataloader, model, loss_fn, optimizer) # 训练
-    # 假设你有 test_dataloader，如果没有，这行先注释掉
-    # test(test_dataloader, model, loss_fn)           # 考试
-print("Done!")
+if __name__ == '__main__':
+    epochs = 5
+    for t in range(epochs):
+        print(f"Epoch {t+1}\n-------------------------------")
+        train(train_dataloader, model, loss_fn, optimizer) # 训练
+        # 假设你有 test_dataloader，如果没有，这行先注释掉
+        # test(test_dataloader, model, loss_fn)           # 考试
+    print("Done!")
+    # 保存模型参数到文件 'model_weights.pth'
+    torch.save(model.state_dict(), "model_weights.pth")
+
+    print("模型参数已保存到 model_weights.pth")
